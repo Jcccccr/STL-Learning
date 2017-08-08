@@ -89,7 +89,9 @@ public:
 			if (--(*_refCount) == 0)           //考虑被赋值的对象的资源有可能还被其他对象占有；当--计数器为0的时候，释放空间
 			{
 				delete[] _str;
+				delete _refCount;
 				_str = NULL;
+				_refCount = NULL;
 			}
 			_str = s._str;
 			_refCount = s._refCount;
@@ -123,7 +125,9 @@ public:
 			if (_str != NULL)
 			{
 				delete[] _str;
+				delete _refCount;
 				_str = NULL;
+				_refCount = NULL;
 				cout << "~MyCOWString" << endl;
 			}
 		}
